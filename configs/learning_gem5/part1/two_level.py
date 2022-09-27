@@ -52,6 +52,8 @@ from caches import *
 # import the SimpleOpts module
 from common import SimpleOpts
 
+from common import ObjectList
+
 # get ISA for the default binary to run. This is mostly for simple testing
 isa = str(m5.defines.buildEnv['TARGET_ISA']).lower()
 
@@ -59,10 +61,12 @@ isa = str(m5.defines.buildEnv['TARGET_ISA']).lower()
 # grab the specific path to the binary
 thispath = os.path.dirname(os.path.realpath(__file__))
 default_binary = os.path.join(thispath, '../../../',
-    'tests/test-progs/hello/bin/', isa, 'linux/hello')
+    'tests/test-progs/primes/primes32-static')
 
 # Binary to execute
 SimpleOpts.add_option("binary", nargs='?', default=default_binary)
+SimpleOpts.add_option("--mem_type", default="DDR3_1600_8x8")
+SimpleOpts.add_option("--clock_speed", default="1GHz")
 
 # Finalize the arguments and grab the args so we can pass it on to our objects
 args = SimpleOpts.parse_args()
@@ -72,7 +76,7 @@ system = System()
 
 # Set the clock frequency of the system (and all of its children)
 system.clk_domain = SrcClockDomain()
-system.clk_domain.clock = '1GHz'
+system.clk_domain.clock = args.clock_speed
 system.clk_domain.voltage_domain = VoltageDomain()
 
 # Set up the system
@@ -122,7 +126,8 @@ system.system_port = system.membus.cpu_side_ports
 
 # Create a DDR3 memory controller
 system.mem_ctrl = MemCtrl()
-system.mem_ctrl.dram = DDR3_1600_8x8()
+#system.mem_ctrl.dram = DDR3_1600_8x8()
+system.mem_ctrl.dram = ObjectList.mem_list.get(args.mem_type)()
 system.mem_ctrl.dram.range = system.mem_ranges[0]
 system.mem_ctrl.port = system.membus.mem_side_ports
 

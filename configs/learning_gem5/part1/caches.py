@@ -90,15 +90,19 @@ class L1DCache(L1Cache):
 
     # Set the default size
     size = '64kB'
+    assoc = 2
 
     SimpleOpts.add_option('--l1d_size',
                           help="L1 data cache size. Default: %s" % size)
+    SimpleOpts.add_option("--l1d_assoc", default=assoc,
+                            help="L1 data associativity. Default: %d" % assoc)
 
     def __init__(self, opts=None):
         super(L1DCache, self).__init__(opts)
         if not opts or not opts.l1d_size:
             return
         self.size = opts.l1d_size
+        self.assoc = opts.l1d_assoc
 
     def connectCPU(self, cpu):
         """Connect this cache's port to a CPU dcache port"""
