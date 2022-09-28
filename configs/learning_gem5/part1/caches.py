@@ -39,6 +39,7 @@ from m5.objects import Cache
 m5.util.addToPath('../../')
 
 from common import SimpleOpts
+from common import ObjectList
 
 # Some specific options for caches
 # For all options see src/mem/cache/BaseCache.py
@@ -103,6 +104,7 @@ class L1DCache(L1Cache):
             return
         self.size = opts.l1d_size
         self.assoc = opts.l1d_assoc
+        self.replacement_policy = ObjectList.rp_list.get(opts.repl_policy)()
 
     def connectCPU(self, cpu):
         """Connect this cache's port to a CPU dcache port"""
@@ -127,6 +129,36 @@ class L2Cache(Cache):
         if not opts or not opts.l2_size:
             return
         self.size = opts.l2_size
+        self.replacement_policy = ObjectList.rp_list.get(opts.repl_policy)()
+
+    def connectCPUSideBus(self, bus):
+        self.cpu_side = bus.mem_side_ports
+
+    def connectMemSideBus(self, bus):
+        self.mem_side = bus.cpu_side_ports
+
+class L3Cache(Cache):
+    """Simple L3 Cache with default values"""
+
+    # Default parameters
+    # mumbers taken from config/lat_mem_rd.py
+    size = '16MB'
+    assoc = 16
+    tag_latency = 20
+    data_latency = 20
+    response_latency = 40
+    mshrs = 32
+    tgts_per_mshr = 12
+
+    SimpleOpts.add_option('--l3_size',
+                        help="L3 cache size. Default: %s" % size)
+
+    def __init__(self, opts=None):
+        super(L3Cache, self).__init__()
+        if not opts or not opts.l3_size:
+            return
+        self.size = opts.l3_size
+        self.replacement_policy = ObjectList.rp_list.get(opts.repl_policy)()
 
     def connectCPUSideBus(self, bus):
         self.cpu_side = bus.mem_side_ports

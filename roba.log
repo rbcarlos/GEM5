@@ -1,0 +1,78 @@
+Global frequency set at 1000000000000 ticks per second
+gem5 Simulator System.  https://www.gem5.org
+gem5 is copyrighted software; use the --copyright option for details.
+
+gem5 version 22.0.0.2
+gem5 compiled Sep 21 2022 14:26:16
+gem5 started Sep 27 2022 11:36:28
+gem5 executing on roba-xilinx, pid 355853
+command line: build/X86/gem5.opt configs/learning_gem5/part1/two_level.py --l2_size=1MB --l1d_size=128kB --l1d_assoc=2 --clock_speed=1GHz --mem_type=DDR3_1600_8x8
+
+Beginning simulation!
+Exiting @ tick 2714573057000 because exiting with last active thread context
+Baseline done!
+Global frequency set at 1000000000000 ticks per second
+gem5 Simulator System.  https://www.gem5.org
+gem5 is copyrighted software; use the --copyright option for details.
+
+gem5 version 22.0.0.2
+gem5 compiled Sep 21 2022 14:26:16
+gem5 started Sep 27 2022 11:47:18
+gem5 executing on roba-xilinx, pid 356551
+command line: build/X86/gem5.opt configs/learning_gem5/part1/two_level.py --l2_size=1MB --l1d_size=128kB --l1d_assoc=2 --clock_speed=400MHz --mem_type=DDR3_1600_8x8
+
+Beginning simulation!
+Exiting @ tick 6199746955000 because exiting with last active thread context
+400MHz done!
+Global frequency set at 1000000000000 ticks per second
+gem5 Simulator System.  https://www.gem5.org
+gem5 is copyrighted software; use the --copyright option for details.
+
+gem5 version 22.0.0.2
+gem5 compiled Sep 21 2022 14:26:16
+gem5 started Sep 27 2022 11:57:15
+gem5 executing on roba-xilinx, pid 356761
+command line: build/X86/gem5.opt configs/learning_gem5/part1/two_level.py --l2_size=1MB --l1d_size=128kB --l1d_assoc=2 --clock_speed=4GHz --mem_type=DDR3_1600_8x8
+
+Beginning simulation!
+Exiting @ tick 1003700001000 because exiting with last active thread context
+4GHz done!
+Global frequency set at 1000000000000 ticks per second
+gem5 Simulator System.  https://www.gem5.org
+gem5 is copyrighted software; use the --copyright option for details.
+
+gem5 version 22.0.0.2
+gem5 compiled Sep 21 2022 14:26:16
+gem5 started Sep 27 2022 12:07:49
+gem5 executing on roba-xilinx, pid 356971
+command line: build/X86/gem5.opt configs/learning_gem5/part1/two_level.py --l2_size=1MB --l1d_size=128kB --l1d_assoc=16 --clock_speed=1GHz --mem_type=DDR3_1600_8x8
+
+Beginning simulation!
+Exiting @ tick 2714708004000 because exiting with last active thread context
+Associativity 16 done!
+Global frequency set at 1000000000000 ticks per second
+gem5 Simulator System.  https://www.gem5.org
+gem5 is copyrighted software; use the --copyright option for details.
+
+gem5 version 22.0.0.2
+gem5 compiled Sep 21 2022 14:26:16
+gem5 started Sep 27 2022 12:18:06
+gem5 executing on roba-xilinx, pid 357182
+command line: build/X86/gem5.opt configs/learning_gem5/part1/two_level.py --l2_size=1MB --l1d_size=128kB --l1d_assoc=16 --clock_speed=1GHz --mem_type=DDR3_2133_8x8
+
+Beginning simulation!
+Exiting @ tick 2689971206000 because exiting with last active thread context
+DDR3_2133_8x8 done!
+Global frequency set at 1000000000000 ticks per second
+gem5 Simulator System.  https://www.gem5.org
+gem5 is copyrighted software; use the --copyright option for details.
+
+gem5 version 22.0.0.2
+gem5 compiled Sep 21 2022 14:26:16
+gem5 started Sep 27 2022 12:28:12
+gem5 executing on roba-xilinx, pid 357381
+command line: build/X86/gem5.opt configs/learning_gem5/part1/two_level.py --l2_size=1MB --l1d_size=128kB --l1d_assoc=16 --clock_speed=1GHz --mem_type=LPDDR2_S4_1066_1x32
+
+Beginning simulation!
+Exiting @ tick 2870145324000 because exiting with last active thread context
+LPDDR2_S4_1066_1x32 done!

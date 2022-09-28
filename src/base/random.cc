@@ -40,6 +40,7 @@
 
 #include "base/random.hh"
 
+#include <ctime>
 #include <sstream>
 
 #include "base/logging.hh"
@@ -51,7 +52,7 @@ namespace gem5
 Random::Random()
 {
     // default random seed
-    init(5489);
+    init(time(NULL));
 }
 
 Random::Random(uint32_t s)
