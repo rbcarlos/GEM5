@@ -1,0 +1,54 @@
+#!/bin/bash
+
+for REP in {1..5}
+do
+    rm -r m5out
+    # baseline
+    build/X86/gem5.opt configs/learning_gem5/part1/two_level.py --l2_size='1MB' --l1d_size='128kB' --l1d_assoc=2 --clock_speed="1GHz" --mem_type='DDR3_1600_8x8'
+
+    cp -r m5out/ roba_out/baseline_rep$REP
+
+    echo "Baseline done!"
+
+    rm -r m5out
+    # 400MHz
+    build/X86/gem5.opt configs/learning_gem5/part1/two_level.py --l2_size='1MB' --l1d_size='128kB' --l1d_assoc=2 --clock_speed="400MHz" --mem_type='DDR3_1600_8x8'
+
+    cp -r m5out/ roba_out/400MHz_rep$REP
+
+    echo "400MHz done!"
+
+    rm -r m5out
+    # 4GHz
+    build/X86/gem5.opt configs/learning_gem5/part1/two_level.py --l2_size='1MB' --l1d_size='128kB' --l1d_assoc=2 --clock_speed="4GHz" --mem_type='DDR3_1600_8x8'
+
+    cp -r m5out/ roba_out/4GHz_rep$REP
+
+    echo "4GHz done!"
+
+    rm -r m5out
+    # 16 assoc
+    build/X86/gem5.opt configs/learning_gem5/part1/two_level.py --l2_size='1MB' --l1d_size='128kB' --l1d_assoc=16 --clock_speed="1GHz" --mem_type='DDR3_1600_8x8'
+
+    cp -r m5out/ roba_out/16assoc_rep$REP
+
+    echo "Associativity 16 done!"
+
+    rm -r m5out
+    # DDR3_2133_8x8
+    build/X86/gem5.opt configs/learning_gem5/part1/two_level.py --l2_size='1MB' --l1d_size='128kB' --l1d_assoc=16 --clock_speed="1GHz" --mem_type='DDR3_2133_8x8'
+
+    cp -r m5out/ roba_out/ddr3_2133_rep$REP
+
+    echo "DDR3_2133_8x8 done!"
+
+    rm -r m5out
+    # LPDDR2_S4_1066_1x32
+    build/X86/gem5.opt configs/learning_gem5/part1/two_level.py --l2_size='1MB' --l1d_size='128kB' --l1d_assoc=16 --clock_speed="1GHz" --mem_type='LPDDR2_S4_1066_1x32'
+
+    cp -r m5out/ roba_out/lpddr2_rep$REP
+
+    echo "LPDDR2_S4_1066_1x32 done!"
+done
+
+./automate_params_three_level

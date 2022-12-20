@@ -67,6 +67,8 @@ default_binary = os.path.join(thispath, '../../../',
 SimpleOpts.add_option("binary", nargs='?', default=default_binary)
 SimpleOpts.add_option("--mem_type", default="DDR3_1600_8x8")
 SimpleOpts.add_option("--clock_speed", default="1GHz")
+SimpleOpts.add_option("--repl_policy",
+            choices=ObjectList.rp_list.get_names(), default="LRURP")
 
 # Finalize the arguments and grab the args so we can pass it on to our objects
 args = SimpleOpts.parse_args()
