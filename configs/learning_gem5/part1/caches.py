@@ -100,11 +100,11 @@ class L1DCache(L1Cache):
 
     def __init__(self, opts=None):
         super(L1DCache, self).__init__(opts)
+        self.assoc = opts.l1d_assoc
+        self.replacement_policy = ObjectList.rp_list.get(opts.repl_policy)()
         if not opts or not opts.l1d_size:
             return
         self.size = opts.l1d_size
-        self.assoc = opts.l1d_assoc
-        self.replacement_policy = ObjectList.rp_list.get(opts.repl_policy)()
 
     def connectCPU(self, cpu):
         """Connect this cache's port to a CPU dcache port"""
@@ -126,10 +126,11 @@ class L2Cache(Cache):
 
     def __init__(self, opts=None):
         super(L2Cache, self).__init__()
+        self.replacement_policy = ObjectList.rp_list.get(opts.repl_policy)()
         if not opts or not opts.l2_size:
             return
         self.size = opts.l2_size
-        self.replacement_policy = ObjectList.rp_list.get(opts.repl_policy)()
+
 
     def connectCPUSideBus(self, bus):
         self.cpu_side = bus.mem_side_ports
@@ -155,10 +156,11 @@ class L3Cache(Cache):
 
     def __init__(self, opts=None):
         super(L3Cache, self).__init__()
+        self.replacement_policy = ObjectList.rp_list.get(opts.repl_policy)()
         if not opts or not opts.l3_size:
             return
         self.size = opts.l3_size
-        self.replacement_policy = ObjectList.rp_list.get(opts.repl_policy)()
+
 
     def connectCPUSideBus(self, bus):
         self.cpu_side = bus.mem_side_ports
