@@ -31,7 +31,6 @@
 #include <cassert>
 #include <memory>
 
-#include "base/random.hh"
 #include "params/TrueRandomRP.hh"
 
 namespace gem5
@@ -44,6 +43,7 @@ namespace replacement_policy
 TrueRandom::TrueRandom(const Params &p)
   : Base(p)
 {
+    Random random_mt = Random(time(NULL));
 }
 
 void

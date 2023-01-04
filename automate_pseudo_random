@@ -1,0 +1,12 @@
+#!/bin/bash
+
+for REP in {1..5}
+do
+    rm -r m5out
+    # baseline three level
+    build/X86/gem5.opt configs/learning_gem5/part1/three_level.py --l2_size='1MB' --l1d_size='128kB' --repl_policy="RandomRP"
+
+    cp -r m5out/ roba_out/three-level-pseudo_rep$REP
+
+    echo "Three level Pseudo random done!"
+done
